@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Proj.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<body>
+    <h2>Movies</h2>
+    <a href="@Url.Action("AddMovie", "Movie")">
+        <button type="button" class="btn btn-primary">ADD</button>
+    </a>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th><h4>Movie</h4></th>
+                <th style="padding-left:95px"><h4>Genre</h4></th">
+            </tr>
+        </thead>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td><b>@i.Name</b></td>
+                <td style="padding-left:95px">@i.Genre.Name</td>
+                <td style="padding-left:400px">
+                    <a href="@Url.Action("Ditails", "Movie", new { id = i.Id}, null)">
+                        <button type="button" class="btn btn-sm btn-primary">
+                            DETAILS
+                        </button>
+                    </a>  |
+                    <a href="@Url.Action("Delete", "Movie", new { id = i.Id}, null)">
+                        <button type="button" class="btn btn-sm btn-danger"> DELETE </button>
+                    </a>  |
+                    <a href="@Url.Action("Edit", "Movie", new { id = i.Id}, null)">
+                        <button type="button" class="btn btn-sm btn-dark">
+                            UPDATE
+                        </button>
+                    </a>  |
+                    <a href="#">
+                        <button type="button" class="btn btn-group">
+                            DOWNLOAD
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="#">
+        <button type="button" class="btn btn-success" >Download the List of Movies</button>
+    </a>
+</body>
+
+
+

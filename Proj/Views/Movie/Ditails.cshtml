@@ -1,0 +1,18 @@
+﻿@model Proj.Models.Movie
+@{
+    ViewBag.Title = "Ditails";
+}
+
+<h2>@Model.Name</h2>
+
+<ol>
+    <li>Genre: @Model.Genre.Name</li>
+    <li>Release Date: @Model.ReleaseDate.ToString("D", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</li>
+    <li>Number in Stock: @Model.NumberInStock</li>
+</ol>
+<div class="form-group">
+   @Html.ActionLink("<-Back to Movies", "Index", "Movie")
+</div>
+
+
+

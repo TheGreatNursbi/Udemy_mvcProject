@@ -1,0 +1,48 @@
+﻿@model Proj.ViewModels.NewCustomerViewModel
+
+@{
+    ViewBag.Title = "AddNewCutomer";
+}
+
+
+
+<h2>New Customer</h2>
+
+@using (Html.BeginForm("FormToCreateCustomer", "Customer"))
+{
+    @Html.ValidationSummary(true, "Please, fix the following errors")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Name)
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Birthday)
+        @Html.TextBoxFor(m => m.Customer.Birthday, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthday)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to News?
+        </label>
+    </div>
+    <div style="margin-bottom:5px;">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList ( Model.MembershipTypes, "Id", "Name"),
+       "Choose", new { @class = "form-control form-control-sm" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+    </div>
+    @Html.HiddenFor(m => m.Customer.Id)
+    @Html.AntiForgeryToken()
+    <td>
+        <button type="submit" class="btn btn-primary">Save</button>  |
+    </td>
+    <td>
+        @Html.ActionLink("Back to Customers", "Index", "Customer")
+    </td>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
